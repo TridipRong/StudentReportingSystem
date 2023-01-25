@@ -1,20 +1,21 @@
 # Student Management Application
 
-In this application, we can manage student data, and course data. Admin can add students, courses, and can manage these entities, students can get the courses they are assigned in and can drop from a particular course.
+In this application, we can add student ,there marks,semester &  See multiple reports of students.
+- Average Percentage of whole class in recent semester
+- Average marks of Students in a subject
+- Top 2 Consistent Students across all semesters (Maximum average marks) 
 
 # ER Diagram
 [![SwaggerUI](https://github.com/kalevishal52/Student_Management_System/blob/main/StudentManagementApplication/Images/ER%20Diagram%20Student%20Management.png?raw=true)](https://github.com/kalevishal52/Student_Management_System/blob/main/StudentManagementApplication/Images/ER%20Diagram%20Student%20Management.png?raw=true)
 
 # Functionalities
--   Layered architecture
--   Admin can register/login
--   Register Courses,Students
--   Get Courses,Students
--   Student will be verified before ascession API
--   Can update Profile details
+-   Add Student
+-   Add subject and number to student
+-   Get Average Percentage of whole class in recent semester
+- Get Average marks of Students in a subject
+- Get top 2 Consistent Students across all semesters (Maximum average marks) 
 
 ## Backend Work
--  Admin Authentication of signUp and Login using Spring security
 -  Proper Exception Handling, and Input Validation
 -  Data Stored in the database(mySQL)
 
@@ -26,7 +27,7 @@ server.port=8888
 spring.datasource.url=jdbc:mysql://localhost:3306/studentsdb
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.username=root
-spring.datasource.password=M@)Vishal!@L
+spring.datasource.password=Tridip123@
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
@@ -36,7 +37,6 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 
 -   Java Core
 -   Spring Data JPA
--   Spring Security
 -   Spring Boot
 -   Hibernate
 -   MySQL
@@ -44,117 +44,45 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 
 # Backend
 
-## Admin Controller
-
-#### POST : /admin/register
-```
-{
-    "userId": 1,
-    "name": "Vishal Kale",
-    "mobileNumber": "8999712976",
-    "password": "$2a$10$W.voyfiLVKfrB3u.BM.iRO6I6BN9qik8JNx9Ux./2dEu57.5ZS.rO",
-    "role": "ROLE_ADMIN"
-}
-```
-
-## Course Controller
-
-#### POST : /courses/
-```
-**Response**
-{
-  "courseId": 2,
-  "courseName": "Java Backend Development",
-  "description": "The course is designed for every person from beginner to advance level",
-  "courseType": "Live",
-  "duration": "8 Months",
-  "topics": "Java Core, Hibernate, JDBC, Spring, SpringBoot"
-}
-{
-  "courseId": 4,
-  "courseName": "Full Stack Web Development",
-  "description": "The course is designed for every person from beginner to advance level",
-  "courseType": "Live",
-  "duration": "9 Months",
-  "topics": "JavaScript, HTML, CSS, NodeJS, React"
-}
-
-```
-#### GET => getStudentsFromCorseHandler : /courses/    
-```
-{
-  "courseId": 4,
-  "courseName": "Full Stack Web Development",
-  "description": "The course is designed for every person from beginner to advance level",
-  "courseType": "Live",
-  "duration": "9 Months",
-  "topics": "JavaScript, HTML, CSS, NodeJS, React",
-  "studentList": [
-    {
-      "studentId": 5,
-      "name": "Vishal Sahadev Kale",
-      "fatherName": "Sahadev Kale",
-      "email": "kale@gmail.com",
-      "mobileNumber": "8999712976",
-      "dob": "2000-12-20",
-      "gender": "MALE"
-    },
-    {
-      "studentId": 7,
-      "name": "Abhinay Ashok Zagade",
-      "fatherName": "Ashok Zagade",
-      "email": "zagade@gmail.com",
-      "mobileNumber": "8999712977",
-      "dob": "2001-02-03",
-      "gender": "MALE"
-    },
-    {
-      "studentId": 9,
-      "name": "Praneet Pradeep Jagtap",
-      "fatherName": "Pradeep Jagtap",
-      "email": "jagtap@gmail.com",
-      "mobileNumber": "9999712978",
-      "dob": "2000-02-29",
-      "gender": "MALE"
-    },
-    {
-      "studentId": 11,
-      "name": "Prateek Narshiv Gore",
-      "fatherName": "Narshiv Gore",
-      "email": "gore@gmail.com",
-      "mobileNumber": "8499712978",
-      "dob": "2003-05-16",
-      "gender": "MALE"
-    }
-  ]
-}
-```
 ## Student Controller
 
-#### Get : /students/courses
+#### POST : /addStudent
 ```
-**Response
 {
-  "name": "Vishal Sahadev Kale",
-  "courses": [
-    {
-      "courseId": 2,
-      "courseName": "Java Backend Development",
-      "description": "The course is designed for every person from beginner to advance level",
-      "courseType": "Live",
-      "duration": "8 Months",
-      "topics": "Java Core, Hibernate, JDBC, Spring, SpringBoot"
-    },
-    {
-      "courseId": 4,
-      "courseName": "Full Stack Web Development",
-      "description": "The course is designed for every person from beginner to advance level",
-      "courseType": "Live",
-      "duration": "9 Months",
-      "topics": "JavaScript, HTML, CSS, NodeJS, React"
-    }
-  ],
-  "studentId": 5
+    "studentId": 1,
+      "name": "Tridip Rong",
+      "fatherName": "Tapas Rong",
+      "email": "zagade@gmail.com",
+      "mobileNumber": "8999712977",
+      "gender": "MALE"
+    
+}
+```
+
+
+#### Get : /avarageParcentage
+```
+{
+  "current semester" : 2,
+  "Parcentage of hole class" : 65
+}
+```
+
+#### Get : /avarageParcentageofeachsub/{studentiId}
+```
+{
+  "Name": "Tridip Rong"
+  "English" : 71,
+  "Math" : 55,
+  "Science" : 88
+}
+```
+
+#### Get : /topperfomer
+```
+{
+  "Tridip" : 72,
+  "Rong" : 65
 }
 ```
 
