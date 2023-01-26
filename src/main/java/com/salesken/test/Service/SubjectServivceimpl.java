@@ -38,7 +38,7 @@ public class SubjectServivceimpl implements SubjectService {
 			student.getSubject().add(sub);
 			return subRepo.save(sub);
 			}
-			else throw new StudentExceptions("hotel not found");
+			else throw new StudentExceptions("student not found");
 	}
 
 	@Override
