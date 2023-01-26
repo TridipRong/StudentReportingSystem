@@ -30,8 +30,8 @@ public class Student {
 	private Gender gender;
 
 
-//	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "students")
-//	List<Subjects> subject = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "students")
+	List<Subjects> subject = new ArrayList<>();
 
 //
 //	@Override

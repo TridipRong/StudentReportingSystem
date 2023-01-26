@@ -12,20 +12,25 @@ import lombok.Data;
 
 @Data
 public class StudentSubjectDto {
-	@NotNull(message = "name cannot be Null")
-	@NotBlank(message = "name cannot be blank")
-	@NotEmpty(message = "name cannot be empty")
+	@NotNull(message = "studentId cannot be Null")
+	@NotBlank(message = "studentId cannot be blank")
+	@NotEmpty(message = "studentId cannot be empty")
+	private Integer studentId;
+	
+	@NotNull(message = "semester cannot be Null")
+	@NotBlank(message = "semester cannot be blank")
+	@NotEmpty(message = "semester cannot be empty")
 	private Semester semester;
 	
-	@NotNull(message = "fatherName cannot be Null")
-	@NotBlank(message = "fatherName cannot be blank")
-	@NotEmpty(message = "fatherName cannot be empty")
-	private SubjectsType subtype;
+	@NotNull(message = "subjectName cannot be Null")
+	@NotBlank(message = "subjectName cannot be blank")
+	@NotEmpty(message = "subjectName cannot be empty")
+	private SubjectsType subjectName;
 	
 	
-	@NotNull(message = "fatherName cannot be Null")
-	@NotBlank(message = "fatherName cannot be blank")
-	@NotEmpty(message = "fatherName cannot be empty")
+	@NotNull(message = "Marks cannot be Null")
+	@NotBlank(message = "Marks cannot be blank")
+	@NotEmpty(message = "Marks cannot be empty")
 	private int Marks;
 	
 }

@@ -20,7 +20,7 @@ public class StudentServiceimpl implements StudentService {
 	private SubjectRepo subRepo;
 	
 	@Override
-	public Student registerStudent(Student studentDTO) throws StudentExceptions {
+	public Student registerStudent(StudentDto studentDTO) throws StudentExceptions {
 		Student student=new Student();
 		student.setName(studentDTO.getName());
 		student.setFatherName(studentDTO.getFatherName());

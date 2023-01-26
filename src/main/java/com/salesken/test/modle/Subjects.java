@@ -23,13 +23,14 @@ public class Subjects {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer SubjectId;
+	private Integer StudentId;
 	private Semester semester;
 	private SubjectsType subtype;
 	private int Marks;
 	
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	List<Student> students = new ArrayList<>();
-//
+	@ManyToMany(cascade = CascadeType.ALL)
+	List<Student> students = new ArrayList<>();
+
 //	@Override
 //	public String toString() {
 //		return "Subjects [SubjectId=" + SubjectId + ", semester=" + semester + ", subtype=" + subtype + ", Marks="
