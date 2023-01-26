@@ -1,4 +1,4 @@
-# Student Management Application
+# Student Reporting Application
 
 In this application, we can add student ,there marks,semester &  See multiple reports of students.
 - Average Percentage of whole class in recent semester
