@@ -55,12 +55,25 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
       "email": "zagade@gmail.com",
       "mobileNumber": "8999712977",
       "gender": "MALE"
+      "Subject":[]
+    
+}
+```
+
+#### POST : /addSubjectToStudent/{studentId}
+```
+{
+    "subjectId" : 2,
+    "studentId": 1,
+     "Semester":2,
+     "Subject":"Maths",
+     "Marks":75
     
 }
 ```
 
 
-#### Get : /avarageParcentage
+#### Get : /avarageParcentage/{sem}
 ```
 {
   "current semester" : 2,
