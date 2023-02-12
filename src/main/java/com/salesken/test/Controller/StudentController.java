@@ -1,6 +1,9 @@
 package com.salesken.test.Controller;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +25,8 @@ import com.salesken.test.modle.DTO.StudentDto;
 import com.salesken.test.modle.DTO.StudentSubjectDto;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import jakarta.validation.Valid;
+
+
 
 @RestController
 @RequestMapping("/Student")
@@ -38,29 +43,36 @@ public class StudentController {
 		
 		return new ResponseEntity<Student>(registeredUser,HttpStatus.CREATED) ;
 	}
-	@PostMapping("/addSubjectToStudent/{studentId}")
-	public ResponseEntity<Subjects> addSujectToStdent(@RequestBody StudentSubjectDto Subject, @PathVariable("Subject") Integer studentId) throws StudentExceptions, SubjectExceptions{
 	
-		Subjects sub = subservice.addSubjectToStudent(Subject,studentId);
-		return new ResponseEntity<Subjects>(sub,HttpStatus.OK);
+//	@PostMapping("/subject/register")
+//	public ResponseEntity<Subjects> registerSubjectHandler(@Valid @RequestBody StudentSubjectDto subject	) throws  SubjectExceptions{
+//		
+//		Subjects registeredsub =  subservice.registerSubject(subject) ;
+//		
+//		return new ResponseEntity<Subjects>(registeredsub,HttpStatus.CREATED) ;
+//		
+//	}
+//	
+	@PutMapping("/addSubjectToStudent/{studentId}")
+	public ResponseEntity<Student> addSujectToStdent(@PathVariable("studentId") Integer studentId ,@RequestBody StudentSubjectDto SubjectId) throws StudentExceptions, SubjectExceptions{
+	
+		Student sub = studentService.addSubjectToStudent(studentId,SubjectId);
+		return new ResponseEntity<Student>(sub,HttpStatus.OK);
 	}
-	@GetMapping("/getAverageOfRecentSemester{sem}")
-	public ResponseEntity<Integer> getAverageOfRecentSemester(@RequestBody Subjects subject, @PathVariable("sem") Integer sem) throws StudentExceptions, SubjectExceptions{
-		
-		Integer sub = subservice.getAverageOfRecentSemester(sem);
-		return new ResponseEntity<Integer>(sub,HttpStatus.OK);
-	}
+	
+	
+	@GetMapping("/getAverageOfRecentSemester")
+	 public ResponseEntity<Double> getAverageOfRecentSemester() throws SubjectExceptions{
+		 return new ResponseEntity<Double>(subservice.getAverageOfRecentSemester(),HttpStatus.OK);
+	 }
+	
+	@GetMapping("/averageMarksOfStudents")
+	 public ResponseEntity<List<Object[]>> getaverageMarksOfStudents() throws SubjectExceptions{
+		return new ResponseEntity<List<Object[]>>(subservice.averageMarksOfStudents(),HttpStatus.OK);
+	 }
 	@GetMapping("/top2ConsistentStudents")
-	public ResponseEntity<List<Student>> top2ConsistentStudents(@RequestBody Subjects subject,@RequestBody Student student) throws StudentExceptions, SubjectExceptions{
-		
-		List<Student> sub = subservice.top2ConsistentStudents(subject,student);
-		return new ResponseEntity<List<Student>>(sub,HttpStatus.OK);
-	}
-	@GetMapping("/averageMarksOfStudents/{rollno}")
-	public ResponseEntity<List<Subjects>> averageMarksOfStudents(@RequestBody Subjects subject,@PathVariable("Rollno") Integer rollno) throws StudentExceptions, SubjectExceptions{
-		
-		List<Subjects> sub = subservice.averageMarksOfStudents(subject,rollno);
-		return new ResponseEntity<List<Subjects>>(sub,HttpStatus.OK);
-	}
+	 public ResponseEntity<List<Object[]>> gettop2ConsistentStudents() throws SubjectExceptions{
+		return new ResponseEntity<List<Object[]>>(subservice.top2ConsistentStudents(),HttpStatus.OK);
+	 }
 	
 }

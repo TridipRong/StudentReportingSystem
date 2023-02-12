@@ -3,14 +3,16 @@ package com.salesken.test.modle;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import com.salesken.test.Enums.Gender;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "studentId", unique = true, nullable = false)
 	private Integer studentId;
 	private String Name;
 	
@@ -30,8 +33,8 @@ public class Student {
 	private Gender gender;
 
 
-	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "students")
-	List<Subjects> subject = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Subjects> subject = new ArrayList<>();
 
 //
 //	@Override
