@@ -23,7 +23,7 @@ In this application, we can add student ,there marks,semester &  See multiple re
 -   Before running the API server, we should update the database config inside the application.properties file.
 -   Update the port number, username and password as per your local database config.
 ```
-server.port=8888
+server.port=8901
 spring.datasource.url=jdbc:mysql://localhost:3306/salesken
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.username=root
@@ -60,12 +60,12 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 }
 ```
 
-#### POST : /addSubjectToStudent/{studentId}
+#### PUT : /addSubjectToStudent/{studentId}
 ```
 {
     "subjectId" : 2,
     "studentId": 1,
-     "Semester":2,
+     "Semester":FIRST,
      "Subject":"Maths",
      "Marks":75
     
@@ -73,15 +73,12 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 ```
 
 
-#### Get : /avarageParcentage/{sem}
+#### Get :/getAverageOfRecentSemester
 ```
-{
-  "current semester" : 2,
-  "Parcentage of hole class" : 65
-}
+89.33
 ```
 
-#### Get : /avarageParcentageofeachsub/{studentiId}
+#### Get : /averageMarksOfStudents
 ```
 {
   "Name": "Tridip Rong"
@@ -91,7 +88,7 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 }
 ```
 
-#### Get : /topperfomer
+#### Get : //top2ConsistentStudents
 ```
 {
   "Tridip" : 72,
