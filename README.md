@@ -6,7 +6,7 @@ In this application, we can add student ,there marks,semester &  See multiple re
 - Top 2 Consistent Students across all semesters (Maximum average marks) 
 
 # ER Diagram
-[![SwaggerUI](https://raw.githubusercontent.com/TridipRong/StudentReportingSystem/main/image/erd.png?raw=true)](https://raw.githubusercontent.com/TridipRong/StudentReportingSystem/main/image/erd.png?raw=true)
+[![SwaggerUI](https://github.com/TridipRong/StudentReportingSystem/blob/main/image/erd.png?raw=true)](https://github.com/TridipRong/StudentReportingSystem/blob/main/image/erd.png?raw=true)
 
 # Functionalities
 -   Add Student
